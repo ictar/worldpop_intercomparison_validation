@@ -2274,13 +2274,16 @@ button,
 
 
 /* WebGIS Styling */
-#map {
+#map, #map1, #map2 {
   width: 100%;
   height: auto;
   padding: 0px;
   margin: 0px;
 }
 
+#map1 {
+  height: 600px;
+}
 .ol-mouse-position {
   right: 42px!important;
   color: rgb(255, 255, 255);

@@ -2281,7 +2281,7 @@ button,
   margin: 0px;
 }
 
-#map1 {
+#map1, #map2 {
   height: 600px;
 }
 .ol-mouse-position {

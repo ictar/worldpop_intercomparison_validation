@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Intercomparison - Visualized by Group 10		</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--OpenLayers-->
+		<link rel="stylesheet" href="v6.4.3/css/ol.css">
+		<script src="v6.4.3/build/ol.js"></script>
+		<!--Layer switcher-->
+		<link rel="stylesheet" href="assets/css/ol-layerswitcher.css">
+		<script src="assets/js/ol-layerswitcher.js"></script>
+		<!--Bootstrap-->
+		<link rel="stylesheet" href="v6.4.3/apidoc/styles/bootstrap.min.css">
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Visualized</strong> by Group 10</a>
+									<ul class="icons">
+										<!--<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>-->
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Intercomparison</h1>
+									</header>
+									<p>A comparison of the two datasets to assess to which extent two of them share the same information. It provides preliminary information about accuracy because the better the two maps represent the reality the more similar they will be. To make intercomparison, the maps must have the same extent, resolution, pixel classes or variable, and CRS.</p>
+
+									<div id="map1">
+										<div id="popup1"></div>
+									</div>
+
+									<hr class="major" />
+									<!-- correlation matrix -->
+									<h2>Correlation Matrix</h2>
+									<div class="box">
+										<p>N = 37171762
+										</br>1.000000 0.943427 
+										</br>0.943427 1.000000 
+										</br></p>
+									</div>
+
+									<hr class="major" />
+									<!-- codes for operation for each tile -->
+									<h2>How to Compute Correlation Matrix For Each Tile</h2>
+									<div>
+										<div class='box'>
+											<IFRAME NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/stats/batch.py" ></IFRAME>
+										</div>
+										<img src='images/batch_usage.jpeg' width=50% alt='Usage'>
+									</div>
+
+									<hr class="major" />
+									<!-- Statistics -->
+									<h2 id="elements">Statistics</h2>
+										<!-- Table -->
+										<div class="table-wrapper">
+											<table id='stats'>
+												<thead>
+													<tr>
+														<th>Index</th>
+														<th>Value</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+				<div id="sidebar">
+					<div class="inner">
+
+						<!-- Search -->
+							<section id="search" class="alt">
+								<form method="post" action="#">
+									<input type="text" name="query" id="query" placeholder="Search" />
+								</form>
+							</section>
+
+						<!-- Menu -->
+							<nav id="menu">
+								<header class="major">
+									<h2>Menu</h2>
+								</header>
+								<ul>
+									<li><a href="index.html">Homepage</a></li>
+									<li><a href="intercomp.html">Intercomparison</a></li>
+									<li><a href="valid.html">Validation</a></li>
+								</ul>
+							</nav>
+
+						<!-- Section -->
+							<section>
+								<header class="major">
+									<h2>About Us</h2>
+								</header>
+								<p>Here are the members of group 10 ^ _ ^</p>
+								<ul class="contact">
+									<li class="icon solid fa-female">RIGAMONTI DOROTEA MARIA<br><a href="#">doroteamaria.rigamonti@mail.polimi.it</a></li>
+									<li class="icon solid fa-female">PILEGGI CHIARA<br><a href="#">chiara.pileggi@mail.polimi.it</a></li>
+									<li class="icon solid fa-female">XU QIONGJIE<br><a href="#">qiongjie.xu@mail.polimi.it</a></li>
+								</ul>
+							</section>
+
+						<!-- Footer -->
+							<footer id="footer">
+								<p class="copyright">&copy; GIS Lab Group 10. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+							</footer>
+
+					</div>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="v6.4.3/apidoc/scripts/bootstrap.bundle.min.js"></script>
+			<!--Script of Map-->
+			<script src="assets/js/map.js"></script>
+			<script>
+				$.ajax({
+					type: "GET",
+					url: "assets/stats/intercomp_diff_stats.txt",
+					dataType: "text",
+					success: function(data) {
+						var table = $('#stats')
+						var tmp = data.split('\n');
+						var heads = tmp[0].split('|');
+						data = tmp[1].split('|')
+						$(data).each(function(i, val){
+							//console.log(heads[i], val);
+							var row = '<tr><td>' + heads[i] + '</td><td>' + val + '</td></tr>';
+							table.append(row);
+						});
+					}
+				})
+			</script>
+
+	</body>
+</html>

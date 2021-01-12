@@ -173,8 +173,8 @@ var map = new ol.Map({
         })
     ],
     view: new ol.View({
-        center:[0, 0],
-        zoom: 2
+        center: ol.proj.fromLonLat([0, 43]),
+        zoom: 0
     }),
     controls: ol.control.defaults().extend([
         new ol.control.ScaleLine(),
@@ -256,8 +256,8 @@ var map_intc = new ol.Map({
         })
     ],
     view: new ol.View({
-        center:[26, 64],
-        zoom: 2
+        center: ol.proj.fromLonLat([30, 67]),
+        zoom: 3
     }),
     controls: ol.control.defaults().extend([
         new ol.control.ScaleLine(),
@@ -341,8 +341,8 @@ var map_valid = new ol.Map({
         })
     ],
     view: new ol.View({
-        center:[26, 64],
-        zoom: 2
+        center: ol.proj.fromLonLat([30, 67]),
+        zoom: 3
     }),
     controls: ol.control.defaults().extend([
         new ol.control.ScaleLine(),

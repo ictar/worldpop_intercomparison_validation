@@ -53,7 +53,69 @@
 									<div id="map2">
 										<div id="popup2"></div>
 									</div>
+									
+									<!-- validation steps -->
+									<hr class="major">
+									<h2>Validation steps</h2>
 
+										<dl>
+											<dt>Preprocessing for validation</dt>
+											<dd> 
+												In order to obtain a thematic map we had to reclassify WorldPop and GHS-POP maps. We decided to have only two classes: NOT URBAN and URBAN.
+												<br>- if pixel value>0 set value 2 to denote built
+												<br>- if pixel value=0 set value 1 to denote not built
+												<br>We obtained the reclassified maps using the Qgis tool Raster Calculator
+											</dd>
+
+											<dd>
+												We computed also the diffrence between these two maps ( recalssified GHS-POP - reclassified WORLDPOP + 1 ). In this way we obtain the map of differences which pixels' values are:
+												<br>-  0 -> if GHS-POP is not populated and WORLDPOP is populated
+												<br>-  1 -> if the two map are both populated or not populated
+												<br>-  2 -> if GHS-POP is populated and WORLDPOP is not populated 
+												This map is important in the creation of a rapresentative sampling point.
+											</dd>
+										</dl>
+	
+										<dl>
+											<dt>Sampling scheme</dt>
+											<dd>
+												Sampling scheme that we used is stratified random sampling.
+												<br>We computed 600 random sampiling points belonging to the classes of the map of differences according to these proportion: 
+												<br>-  33%-> GHS-POP is not populated and WORLDPOP is populated
+												<br>-  34%-> the two map are both populated or not populated
+												<br>-  33%-> GHS-POP is populated and WORLDPOP is not populated 
+											</dd>
+											<dd> 
+												For the creation of the sampling points we have used AcATaMa plugin- Qgis plugin for Accuracy Assessment of THematic Maps 
+											</dd>
+											
+											<dd>We should have set a minimum distance between points, but we didn't make it because of a bug in the program </dd>
+										</dl>
+														
+										<dl>
+											<dt>Classification of the sampling</dt>
+											<dd>
+												For the classification of the points the method of photo-interpretation was used.
+												Manually for each point we set the class (urban or not urban) by looking at a very high resolution (VHR) imagery.
+											</dd>
+											<dd> 
+												We used as VHR imagery Bing Satellite and Google Satellite and sometimes, when both map were covered with clouds or not available, we needed to add and check ESRI Satellite imagery. 
+											</dd>
+											<dd>
+												We set the window size to 0.004 deg. With this setting, display size is around pixel size (0.008 deg x 0.008 deg) which is important because class is estimated on pixel level.
+											</dd>
+										</dl>
+	
+										<dl>
+											<dt>Computation of the error matrix</dt>
+											<dd> 
+												For this step we used a Python scripts called Accuracy_assessment_and_sampling. It allows computation of error matrix and accuracy indexes of a map starting from vector of points which contains one attribute field with classified validation samples (i.e. output of photo-interpretation of AcATaMa plugin) 
+											</dd>
+											<dd>
+												This script provides a CSV file containing the error matrix and the accuracy indexes of the thematic map to be validated
+											</dd>
+										</dl>
+									
 									<hr class="major" />
 									<!-- Error matrices and associated accuracy indexes -->
 									<h2>Error matrices and associated accuracy indexes</h2>
@@ -97,23 +159,43 @@
 
 									<hr class="major" />
 
-									<h4>Definition</h4>
+									<!-- Definition of indexes-->
+									<!--<hr class="major" /> -->
+									<details>
+										<summary>
+											<b>Definition of indexes</b>
+										</summary>
+										<dl>
+											<dt>Overall accuracy (OA)</dt>
+											<dd>
+												Proportion of correctly classified pixels in total number of pixels:
+												<br>OA = "all correctly classified pixels" / "all pixels"
+											</dd>
+												
+											<dt>User’s accuracy (UA)</dt>
+											<dd>
+												User’s accuracy (UA) of a class shows how often a user of thematic raster can expect to find the class on the ground:
+												<br>UA = "number of pixels correctly classfied in class 2" / "number of pixels classified by thematic raster in class 2"
+											</dd>
+
+											<dt>Producer’s accuracy (PA)</dt>
+											<dd>
+												Producer’s accuracy (PA) of a class is probability that the class present on the ground is also captured by classification in the thematic raster:
+												<br>PA = "number of pixels correctly classfied in class 2" / "number of pixels classified by classified samples in class 2"
+											</dd>
+										</dl>
+											
+									</details>
+								
+										
+									
+									<hr class="major">
+									<h2>Conlusion</h2>
 									<dl>
-										<dt>Overall accuracy (OA)</dt>
-										<dd>
-											<p>Proportion of correctly classified pixels in total number of pixels:</p>
-											<p>OA = "all correctly classified pixels" / "all pixels"</p>
-										</dd>
-										<dt>User’s accuracy (UA)</dt>
-										<dd>
-											<p>User’s accuracy (UA) of a class shows how often a user of thematic raster can expect to find the class on the ground:</p>
-											<p>UA = "number of pixels correctly classfied in class 2" / "number of pixels classified by thematic raster in class 2"</p>
-										</dd>
-										<dt>Producer’s accuracy (PA)</dt>
-										<dd>
-											<p>Producer’s accuracy (PA) of a class is probability that the class present on the ground is also captured by classification in the thematic raster:</p>
-											<p>PA = "number of pixels correctly classfied in class 2" / "number of pixels classified by classified samples in class 2"</p>
-										</dd>
+										<p> In the area of group_10, the two maps have a very symilar accuracy. 
+										<br>The OA index is around 0.64.
+										<br>From the user point of view we can say that class 1 (not urban) is the more accurate: UA is around 0.9. 
+										<br>On the other end, from the producer point of view is slightly better the accuracy of the class 2 (urban): PA is around 0.7.</p>
 									</dl>
 								</section>
 

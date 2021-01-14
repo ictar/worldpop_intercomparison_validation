@@ -55,21 +55,26 @@
 									<!-- correlation matrix -->
 									<h2>Correlation Matrix</h2>
 									<div class="box">
-										<p>N = 37171762
-										</br>1.000000 0.943427 
-										</br>0.943427 1.000000 
-										</br></p>
+										<IFRAME NAME="content_frame" width=100% SRC="assets/stats/covariance_matrix.html" ></IFRAME>
 									</div>
 
 									<hr class="major" />
 									<!-- codes for operation for each tile -->
-									<h2>How to Compute Correlation Matrix For Each Tile</h2>
+									<h2>How to intercompare automatically?</h2>
+									<div class="tab">
+										<button class="tablinks" onclick="openCode(event, 'step1')">Step 1 Preprocessing</button>
+										<button class="tablinks" onclick="openCode(event, 'step2')">Step 2 Processing</button>
+									  </div>
+									  
+									  <!-- Tab content -->
+									  <div id="step1" class="tabcontent">
+										<IFRAME NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/scripts/intercomp_1.py" ></IFRAME>
+									  </div>
+									  
+									  <div id="step2" class="tabcontent">
+										<IFRAME NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/scripts/intercomp_2.py" ></IFRAME>
+									  </div>
 									<div>
-										<div class='box'>
-											<IFRAME NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/stats/batch.py" ></IFRAME>
-										</div>
-										<img src='images/batch_usage.jpeg' width=50% alt='Usage'>
-									</div>
 
 									<hr class="major" />
 									<!-- Statistics -->
@@ -87,6 +92,11 @@
 												</tbody>
 											</table>
 										</div>
+
+
+									<hr class="major" />
+									<!-- Conclusion -->
+									<h2 id="elements">Statistics</h2>
 								</section>
 
 						</div>
@@ -164,6 +174,25 @@
 						});
 					}
 				})
+
+				function openCode(evt, step) {
+					var i, tabcontent, tablinks;
+
+					tabcontent = document.getElementsByClassName("tabcontent");
+					for (i = 0; i < tabcontent.length; i++) {
+						tabcontent[i].style.display = "none";
+					}
+
+					// Get all elements with class="tablinks" and remove the class "active"
+					tablinks = document.getElementsByClassName("tablinks");
+					for (i = 0; i < tablinks.length; i++) {
+						tablinks[i].className = tablinks[i].className.replace(" active", "");
+					}
+
+					// Show the current tab, and add an "active" class to the button that opened the tab
+					document.getElementById(step).style.display = "block";
+					evt.currentTarget.className += " active";
+				}
 			</script>
 
 	</body>

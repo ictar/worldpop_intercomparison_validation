@@ -1,7 +1,7 @@
 # step 1. preprocessing
 # configuration
 group_name = 'group_10'
-base_dir = r"GEOGRAPHIC INFORMATION SYSTEMS/laboratory"
+base_dir = r"GIS/laboratory"
 intercmp_dir = base_dir + '/output/intercomparison/'
 
 ghs_input = base_dir + r"/data/GHS_POP_E2015_GLOBE_R2019A_4326_30ss_V1_0/GHS_POP_E2015_GLOBE_R2019A_4326_30ss_V1_0.tif"

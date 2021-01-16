@@ -1,7 +1,7 @@
 # step 2. processing
 # configuration
 group_name = 'group_10'
-base_dir = r"/Users/elexu/读书/米兰理工（GIS-CS）/GEOGRAPHIC INFORMATION SYSTEMS/laboratory"
+base_dir = r"GIS/laboratory"
 intercmp_dir = base_dir + '/output/intercomparison/'
 
 ghs_input = intercmp_dir + r"ghs_intercomp_final.tif"

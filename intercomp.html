@@ -55,7 +55,7 @@
 									<!-- correlation matrix -->
 									<h2>Correlation Matrix</h2>
 									<div class="box">
-										<IFRAME NAME="content_frame" width=100% SRC="assets/stats/covariance_matrix.html" ></IFRAME>
+										<embed NAME="content_frame" width=100% SRC="assets/stats/covariance_matrix.html" >
 									</div>
 
 									<hr class="major" />
@@ -79,11 +79,11 @@
 									  
 									  <!-- Tab content -->
 									  <div id="step1" class="tabcontent">
-										<IFRAME NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/scripts/intercomp_1.py" ></IFRAME>
+										<embed NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/scripts/intercomp_1.py" >
 									  </div>
 									  
 									  <div id="step2" class="tabcontent">
-										<IFRAME NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/scripts/intercomp_2.py" ></IFRAME>
+										<embed NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/scripts/intercomp_2.py" >
 									  </div>
 									<div>
 
@@ -170,11 +170,13 @@
 			<!--Script of Map-->
 			<script src="assets/js/map.js"></script>
 			<script>
+				console.log("Begin to load stats for intercomp_diff")
 				$.ajax({
 					type: "GET",
 					url: "assets/stats/intercomp_diff_stats.txt",
 					dataType: "text",
 					success: function(data) {
+						console.log("[SUCCESS] Request stats for intercomp_diff")
 						var table = $('#stats')
 						var tmp = data.split('\n');
 						var heads = tmp[0].split('|');

@@ -258,11 +258,13 @@
 			<!--Script of Map-->
 			<script src="assets/js/map.js"></script>
 			<script>
+				console.log("Begin to load error matrix for worldpop")
 				$.ajax({
 					type: "GET",
 					url: "assets/stats/worldpop_error_matrix.csv",
 					dataType: "text",
 					success: function(data) {
+						console.log("[SUCCESS] Request error matrix for worldpop")
 						var table = $('#wp_err_mat')
 						var data = data.split('\n').slice(1);
 						$(data).each(function(i, val){
@@ -278,11 +280,13 @@
 					}
 				});
 
+				console.log("Begin to load error matrix for ghs")
 				$.ajax({
 					type: "GET",
 					url: "assets/stats/ghs_error_matrix.csv",
 					dataType: "text",
 					success: function(data) {
+						console.log("[SUCCESS] Request error matrix for ghs")
 						var table = $('#ghs_err_mat')
 						var data = data.split('\n').slice(1);
 						$(data).each(function(i, val){

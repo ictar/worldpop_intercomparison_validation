@@ -72,18 +72,19 @@
 
 									<hr class="major" />
 									<h2>How to intercompare automatically?</h2>
+									<p>Run python scripts in QGIS!</p>
 									<div class="tab">
-										<button class="tablinks" onclick="openCode(event, 'step1')">Step 1 Preprocessing</button>
-										<button class="tablinks" onclick="openCode(event, 'step2')">Step 2 Processing</button>
+										<button class="tablinks" onclick="openCode(event, 'step1', 'assets/scripts/intercomp_1.py')">Step 1 Preprocessing</button>
+										<button class="tablinks" onclick="openCode(event, 'step2', 'assets/scripts/intercomp_2.py')">Step 2 Processing</button>
 									  </div>
 									  
 									  <!-- Tab content -->
 									  <div id="step1" class="tabcontent">
-										<embed NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/scripts/intercomp_1.py" >
+										  <pre><code id='step1_code'></code></pre>
 									  </div>
 									  
 									  <div id="step2" class="tabcontent">
-										<embed NAME="content_frame" width=100%  marginwidth=5 marginheight=5 SRC="assets/scripts/intercomp_2.py" >
+										<pre><code id='step2_code'></code></pre>
 									  </div>
 									<div>
 
@@ -189,6 +190,23 @@
 					}
 				})
 
+				$.ajax({
+					type: "GET",
+					url: "assets/scripts/intercomp_1.py",
+					dataType: "text",
+					success: function(data) {
+						document.getElementById('step1_code').innerText = data
+					}
+				})
+				$.ajax({
+					type: "GET",
+					url: "assets/scripts/intercomp_2.py",
+					dataType: "text",
+					success: function(data) {
+						document.getElementById('step2_code').innerText = data
+					}
+				})
+
 				function openCode(evt, step) {
 					var i, tabcontent, tablinks;
 
@@ -204,7 +222,7 @@
 					}
 
 					// Show the current tab, and add an "active" class to the button that opened the tab
-					document.getElementById(step).style.display = "block";
+					document.getElementById(step).style.display = "grid";
 					evt.currentTarget.className += " active";
 				}
 			</script>

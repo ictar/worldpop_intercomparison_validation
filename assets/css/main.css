@@ -2294,7 +2294,7 @@ button,
 }
 
 /* Create an active/current tablink class */
-.tab button.active {
+.tab button.active { 
   background-color: #f56a6a4b;
 }
 
@@ -2304,6 +2304,7 @@ button,
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
+  height:300px;
 }
 
 /* WebGIS Styling */

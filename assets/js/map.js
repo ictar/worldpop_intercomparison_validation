@@ -25,12 +25,12 @@ var ghs_rec_info = new ol.source.ImageWMS({
 });
 var worldpop_rec_info = new ol.source.ImageWMS({
     url: geoserver_url+'/Lab_GIS/wms',
-    params: {'LAYERS': 'worldpop_rec_int'}
+    params: {'LAYERS': 'Lab_GIS:worldpop_rec_int'}
 });
 /* Map of differences (GHS-POP - WorldPop)+1 */
 var difference_3scenarios_info = new ol.source.ImageWMS({
     url: geoserver_url+'/Lab_GIS/wms',
-    params: {'LAYERS': 'difference_3scenarios_int'}
+    params: {'LAYERS': 'Lab_GIS:difference_3scenarios_int'}
 });
 /* Vector layer of classified sampling points in GeoPackage format with 3 attributes */
 var classified_points_url = geoserver_url+'/Lab_GIS/ows?service=WFS&' +
@@ -388,14 +388,14 @@ map_valid.on('click', function(event){
         } else if(feature.get('Classified') == '2'){
             content += '<b>Classified: </b>Urban'
         }
-        if(feature.get('Thematic C') == '1') {
+        if(feature.get('Thematic Class') == '1') {
             content += '</br><b>GHS Thematic Class: </b>Not Urban'
-        } else if(feature.get('Thematic C') == '2'){
+        } else if(feature.get('Thematic Class') == '2'){
             content += '</br><b>GHS Thematic Class: </b>Urban'
         }
-        if(feature.get('Worldpop_T') == '1') {
+        if(feature.get('worldpop_1') == '1') {
             content += '</br><b>WorldPop Thematic Class: </b>Not Urban'
-        } else if(feature.get('Worldpop_T') == '2') {
+        } else if(feature.get('worldpop_1') == '2') {
             content += '</br><b>WorldPop Thematic Class: </b>Urban'
         }
 		$(elementPopup2).attr('data-content', content);

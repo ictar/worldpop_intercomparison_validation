@@ -299,7 +299,7 @@ map_intc.on('click', function(event){
 		popup1.setPosition(coord);
 		$(elementPopup1).attr('title', 'Group 10 Tiles');
 		$(elementPopup1).attr('data-content', '<b>TileID: </b>'+feature.get('tileID') +
-            '</br><b>Correlation Dactor:</b>' + feature.get('correlation_factor'));
+            '</br><b>Correlation Factor:</b>' + feature.get('correlation_factor'));
         //console.log(elementPopup1)
 		$(elementPopup1).popover({'placement': 'top', 'html': true});
 		$(elementPopup1).popover('show');

@@ -53,13 +53,13 @@
 
 									<hr class="major" />
 									<!-- codes for operation for each tile -->
-									<p>Both maps are based on local data, big satellite data and both mainly sense the presence of building to estimate the population but they use different logics, methods and algorithms to do it. We therefore have two independent and not comparable datasets of the same thing. In each map the choice of the values ​​to put on the inland water bodies and the value representing the no-data is different: this is the main issue we have to fix. In fact, in the GHS map null values (= -200) are present on seas and oceans while in the WorldPop map null values (= -32768) are present also over inland water bodies, where GHS-POP has values = 0 which means not populated. It is therefore necessary to pre-process the data and then make the intercomparison. </p>
+									<p>Both maps are based on local and big satellite data, they both mainly sense the presence of building to estimate the population but they use different logics, methods and algorithms to do it. We therefore have two independent and not comparable datasets of the same thing. In each map the choice of the values ​​to put on the inland water bodies and the value representing the no-data is different: this is the main issue we have to fix. In fact, in the GHS map null values (= -200) are present on seas and oceans while in the WorldPop map null values (= -32768) are present also over inland water bodies, where GHS-POP has values = 0 which means not populated. It is therefore necessary to pre-process the data and then make the intercomparison. </p>
 
-									<p>1)PREPROCESSING</p>    
+									<dt>PREPROCESSING</dt>    
 
-									<p>With the preprocessing step two comparable maps will be obtained: through this step the maps are clipped, aligned and the same values in both are set in order to harmonize the datasets regarding what their values represent.</p>
+									<p>With the preprocessing step two comparable maps will be obtained: at first the maps are clipped and aligned in order to have an equivalent pixel extention, then the same legend of values in both is set in order to harmonize the datasets regarding what their values represent.</p>
 
-									<p>2)PROCESSING</p>
+									<dt>PROCESSING</dt>
 
 									<p>With the processing step, once the difference between the two maps has been done, the correlation matrix and statistical information are computed. Lastly the correlation matrix of each single tile is calculated. </p>
 
@@ -127,10 +127,33 @@
 										<IFRAME NAME="content_frame" width=100% SRC="assets/stats/covariance_matrix.html" ></IFRAME>
 										<p> If you want to know the correlation index of the single tile, click on it in the map!</p>
 									</div>
+									<details>
+										<summary>
+											<b>Definition of the correlation matrix</b>
+											
+										</summary>
+										<dl>
+											<p>The correlation matrix measures the similarities between the two maps, the greater the differences, the worse the correlation index gets. The matrix shown above is a square, positive and symmetrical matrix. Since we are comparing two maps, the matrix will have two rows and two columns. The first row and column are associated with GHS map while the second ones are associated with Worldpop map, that’s the reason why we find 1 on the diagonal: both maps are 100% correlated with themselves. The correlation index is 0.944534. </p>
+
+										</dl>
+									</details>
+
 									<!-- Conclusion -->
+									<hr class="major" />
 									<h2 id="elements">Conclusion</h2>
-									<p> The correlation matrix measures the similarities between the two maps, the greater the differences, the worse the correlation index gets. The matrix shown above is a square, positive and symmetrical matrix. Since we are comparing two maps, the matrix will have two rows and two columns.The first row and column are associated with GHS map while the second ones are associated with Worldpop map, that’s the reason why we find 1 on the diagonal: both maps are 100% correlated with themselves. Observing the matrix obtained it is possible to state that the linear correlation between the maps is strong, its index is in fact 0.944534. The results obtained are consisten, the difference of the Worldpop map compared to the GHS one is minimal.The fact that the tiles of group_10 covered some uninhabited areas helped to have a higher correlation index. Analyzing the correlation index of each single tile, we observe that this tends to increase in the sea and in the northern islands: in these places there is no population (NaN values) and therefore the correlation index is 1. On the contrary in the mainland, as the population increased, the index worsened.</p>
+
+
+
+									<p> Looking at the stats, we can observe that the value of the sum is positive: we have more positive values than negative ones. The min and the max values are quite big, but the mean is not so far from 0. This means that the cells with a big difference are not so frequent
+                                                                         with respect to the total number of cells. </p>
+
+									<p> Observing the matrix obtained it is possible to state that the linear correlation between the maps is strong, its index is in fact 0.944534. The results obtained are consistent, the difference of the Worldpop map compared to the GHS one is minimal: we can conlude that the maps make a good representation of the reality. </p>
+
+									<p> Analyzing the correlation index of each single tile, we observed that the tiles covering the northern islands have a correlation factor equal to Nan. This is due to the fact that in these places there is no population: the standard deviations are equal to 0 and the mathematical formula of the correlation coefficient results unsolvable. Assuming that the two maps in those tiles are equal, we put 1 as correlation factor.
+                                                                            We observed also that in the most populated part of our area, the correlation factor is higher than the one of areas where there is the see or which are more desertic. In the tiles with the sea, this could be due to the fact that there are less pixels with which compute the statistics; in the desertic tiles, this could be correlated to the different way of the two maps in evaluating the value of the pixel.</p>
 								</section>
+
+									
 
 						</div>
 					</div>

@@ -381,7 +381,6 @@ map_valid.on('click', function(event){
 		var pixel = event.pixel;
 		var coord = map_valid.getCoordinateFromPixel(pixel);
 		popup2.setPosition(coord);
-        $(elementPopup2).attr('title', 'Classified Sampling Point');
         var content = ''
         if(feature.get('Classified') == '1') {
             content += '<b>Classified: </b>Not Urban'
@@ -398,11 +397,17 @@ map_valid.on('click', function(event){
         } else if(feature.get('worldpop_1') == '2') {
             content += '</br><b>WorldPop Thematic Class: </b>Urban'
         }
-		$(elementPopup2).attr('data-content', content);
-        //console.log(elementPopup2)
-		$(elementPopup2).popover({'placement': 'top', 'html': true});
-		$(elementPopup2).popover('show');
-	}
+        if(content != '') {
+            $(elementPopup2).attr('title', 'Classified Sampling Point');
+            $(elementPopup2).attr('data-content', content);
+            $(elementPopup2).popover({'placement': 'top', 'html': true});
+            $(elementPopup2).popover('show');
+        }else {
+            $(elementPopup2).popover('dispose');
+        }
+	} else {
+        $(elementPopup2).popover('dispose');
+    }
 });
 
 map_valid.on('pointermove', function(event){
